@@ -44,6 +44,8 @@ func main() {
 					También los permisos tienen 3 alcances: "owner", "group", "other" en ese mismo orden
 					y se agrupan de manera consecutiva, ejemplo:
 					$ chmod 644 dirname
+
+					https://linuxize.com/post/chmod-command-in-linux/#numeric-method
 				*/
 				// Is it executable?
 				// Trabaja con los bits
