@@ -9,8 +9,13 @@
 8. goRoutines.go
 9. which.go
 ______________________
-Problemas de dependencias de mi Mac por estar en Cuba
+Problemas de dependencias de mi Mac por estar en Cuba <br>
 10. systemLog.go
 ______________________
 11. customLog.go
 12. customLogLineNumber.go
+13. generics.go
+14. phoneBook.go
+
+# Tareas del capítulo
+- which_v2.go
