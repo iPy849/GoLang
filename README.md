@@ -1,21 +1,23 @@
 # Orden de lectura
-1. hw.go
-2. vars.go
-3. control.go
-4. forLoops.go
-5. input.go
-6. cla.go
-7. process_tchnq.go
-8. goRoutines.go
-9. which.go
-______________________
-Problemas de dependencias de mi Mac por estar en Cuba <br>
-10. systemLog.go
-______________________
-11. customLog.go
-12. customLogLineNumber.go
-13. generics.go
-14. phoneBook.go
+1. [error.go](error.go)
+2. [numbers.go](numbers.go)
+3. [text.go](text.go)
+4. [intString.go](intString.go)
+5. [unicode.go](unicode.go)
+6. [useString.go](useString.go)
+7. [dates.go](dates.go)
+8. [convertTime](convertTime.go)
+9. [constants](constants.go)
+10. [goSlices.go](goSlices.go)
+11. [capLength.go](capLength.go)
+12. [partSlice.go](partSlice.go)
+
+# Mis propios scripts
+- [m_errors.go](m_errors.go)
+- [m_strings_and_runes.go](m_strings_and_runes.go)
+- [m_time.go](m_time.go)
+- [m_arrays_vs_slices.go](m_arrays_vs_slices.go)
+
 
 # Tareas del capítulo
-- which_v2.go
+- 
