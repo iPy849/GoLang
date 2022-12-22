@@ -11,6 +11,11 @@
 10. [goSlices.go](goSlices.go)
 11. [capLength.go](capLength.go)
 12. [partSlice.go](partSlice.go)
+13. [byteSlice.go](byteSlice.go)
+14. [deleteSlice.go](deleteSlice.go)
+15. [sliceArrays.go](sliceArrays.go)
+16. [copySlice.go](copySlice.go)
+17. [sortSlice.go](sortSlice.go)
 
 # Mis propios scripts
 - [m_errors.go](m_errors.go)
