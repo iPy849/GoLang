@@ -2,8 +2,11 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"path"
+	"strconv"
+	"time"
 )
 
 type Entry struct {
@@ -13,10 +16,38 @@ type Entry struct {
 }
 
 var data = []Entry{}
+var MIN = 0
+var MAX = 26
+
+func populate(n int, s []Entry) {
+	for i := 0; i < n; i++ {
+		name := getString(4)
+		surname := getString(5)
+		n := strconv.Itoa(random(100, 199))
+		data = append(data, Entry{name, surname, n})
+	}
+}
+
+func random(min, max int) int {
+	return rand.Intn(max-min) + min
+}
+
+func getString(l int64) string {
+	startChar := "A"
+	temp := ""
+	var i int64 = 1
+	for i != l {
+		myRand := random(MIN, MAX)
+		newChar := string(startChar[0] + byte(myRand))
+		temp = temp + newChar
+		i++
+	}
+	return temp
+}
 
 func search(key string) *Entry {
 	for i, v := range data {
-		if v.Surname == key {
+		if v.Tel == key {
 			return &data[i]
 		}
 	}
@@ -37,10 +68,13 @@ func main() {
 		return
 	}
 
-	// Dos formas de llenar un struct
-	data = append(data, Entry{Name: "Mihalis", Surname: "Tsoukalos", Tel: "2109416471"})
-	data = append(data, Entry{"Mary", "Doe", "2109416871"})
-	data = append(data, Entry{"John", "Black", "2109416123"})
+	SEED := time.Now().Unix()
+	rand.Seed(SEED)
+
+	// How many records to insert
+	n := 100
+	populate(n, data)
+	fmt.Printf("Data has %d entries.\n", len(data))
 
 	switch arguments[1] {
 	case "search":

@@ -16,13 +16,21 @@
 15. [sliceArrays.go](sliceArrays.go)
 16. [copySlice.go](copySlice.go)
 17. [sortSlice.go](sortSlice.go)
+18. [pointers.go](pointers.go) --> se me hace mejor ver mi ejemplo en este caso
+19. [randomNumbers](randomNumbers.go) --> se me hace mejor ver mi ejemplo en este caso
+20. [genPass.go](genPass.go) --> se me hace mejor ver mi ejemplo en este caso
+21. [phoneBook.go](phoneBook.go)
 
 # Mis propios scripts
 - [m_errors.go](m_errors.go)
 - [m_strings_and_runes.go](m_strings_and_runes.go)
 - [m_time.go](m_time.go)
 - [m_arrays_vs_slices.go](m_arrays_vs_slices.go)
-
+- [m_pointers.go](m_pointers.go)
+- [m_random.go](m_random.go)
+- [m_genPass.go](m_genPass.go)
 
 # Tareas del capítulo
-- 
+- [h1.go](h1.go)
+- [h2.go](h2.go)
+- [h3.go](h3.go)
