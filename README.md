@@ -1,13 +1,24 @@
-# ¡¡¡ATENCIÓN!!!
-No voy a completar este capítulo porque habla de módulos de I/O pero si me quedé con la información del decodificador JSON, XML y YAML ya que estos son importantes en los protocolos de comunicación web.
-
-No es como que me lo salto pero tendré que hacerlo en otro momento porque la verdad no lo considero tan relevante para el momento
-
 # Orden de lectura
-1. 
+1. [maxprocs.go](maxprocs.go)
+2. [create.go](create.go)
+3. [multiple.go](multiple.go)
+4. [varGoroutines.go](varGoroutines.go)
+5. [varGoroutines.go](varGoroutines.go)
+6. [addDone.go](addDone.go)
+7. [randomFiles.go](randomFiles.go)
+8. [channels.go](channels.go) ==> Está medio de locos jajaja
+9. [readCloseCh.go](readCloseCh.go)
+10. [channelFunc.go](channelFunc.go)
+11. [chRace.go](chRace.go) ==> Esto es un fix de las race conditions sobre el canal que ocurre en el punto 8, tiene mods en la salida
+12. [select.go](select.go)
+13. [timeOut1.go](timeOut1.go)
+14. [timeOut2.go](timeOut2.go) ==> Revisar notas de este script
+15. [closeNil.go](closeNil.go)
+16. [bufChannel.go](bufChannel.go)
+17. [nilChannel.go](nilChannel.go)
 
 # Mis propios scripts
 - 
 
-# Tareas del capítulo (No haré las de phoneBook por el momento)
+# Tareas del capítulo
 - 
