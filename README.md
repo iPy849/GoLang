@@ -15,10 +15,11 @@
 14. [timeOut2.go](timeOut2.go) ==> Revisar notas de este script
 15. [closeNil.go](closeNil.go)
 16. [bufChannel.go](bufChannel.go)
-17. [nilChannel.go](nilChannel.go)
+17. [nilChannel.go](nilChannel.go) ==> Tiene cambios propios
+18. [wPools.go](wPools.go)
 
 # Mis propios scripts
-- 
+- [m_workPool.go](m_workPool.go)
 
 # Tareas del capítulo
 - 
