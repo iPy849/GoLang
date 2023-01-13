@@ -17,9 +17,18 @@
 16. [bufChannel.go](bufChannel.go)
 17. [nilChannel.go](nilChannel.go) ==> Tiene cambios propios
 18. [wPools.go](wPools.go)
+19. [defineOrder.go](defineOrder.go)
+20. [mutex.go](mutex.go)
+21. [forgetMutex.go](forgetMutex.go)
+22. [rwMutex.go](rwMutex.go)
+23. [atomic.go](atomic.go)
+24. [monitor.go](monitor.go)
+25. [goClosure.go](goClosure.go)
+26. [goClosureCorrect.go](goClosureCorrect.go)
 
 # Mis propios scripts
 - [m_workPool.go](m_workPool.go)
+- [m_rwMutex.go](m_rwMutex.go)
 
 # Tareas del capítulo
 - 

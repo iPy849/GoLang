@@ -11,13 +11,13 @@ import (
 Experiencias:
 * Tener cuidado con los canales
 * El range + canal se quedaba pegado porque no lo cerraba
- */
+*/
 
 var waitingGroup sync.WaitGroup
 
 // Representaciones de datos
 type Task struct {
-	id int
+	id   int
 	data int
 }
 
@@ -31,11 +31,11 @@ var tareas = make(chan Task, runtime.GOMAXPROCS(0))
 var resultados = make(chan TaskResult, runtime.GOMAXPROCS(0))
 
 // Funciones
-func CreateTask(i int){
+func CreateTask(i int) {
 	tareas <- Task{id: i, data: i}
 }
 
-func RunWorker(){
+func RunWorker() {
 	for task := range tareas {
 		time.Sleep(time.Second)
 		resultados <- TaskResult{Task: task, result: task.data * task.data}
@@ -45,20 +45,19 @@ func RunWorker(){
 
 }
 
-func ReadResults(){
+func ReadResults() {
 	for resultado := range resultados {
 		fmt.Printf(
 			"id: %v\tdata: %v\tresult: %v\n",
 			resultado.id,
 			resultado.data,
 			resultado.result,
-			)
+		)
 	}
 }
 
-
 func main() {
-	workers := 1234
+	workers := 1000
 	tasksNumber := 10000
 
 	go func() {
@@ -69,7 +68,6 @@ func main() {
 	}()
 
 	go ReadResults()
-
 
 	for i := 0; i < workers; i++ {
 		waitingGroup.Add(1)
