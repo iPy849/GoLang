@@ -25,10 +25,11 @@
 24. [monitor.go](monitor.go)
 25. [goClosure.go](goClosure.go)
 26. [goClosureCorrect.go](goClosureCorrect.go)
+27. [useContext.go](useContext.go)
 
 # Mis propios scripts
 - [m_workPool.go](m_workPool.go)
 - [m_rwMutex.go](m_rwMutex.go)
 
-# Tareas del capítulo
+# Tareas del capítulo (la verdad no entendí esta vez)
 - 
