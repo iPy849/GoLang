@@ -2,8 +2,9 @@ package main
 
 import (
 	"fiber.example/database"
+	"fiber.example/router"
 
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
 )
 
@@ -21,23 +22,23 @@ func main() {
 
 	// Fiber Setup
 	app := fiber.New()
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
 
-	app.Get("/custom/:foo", func(c *fiber.Ctx) error {
-		/*
-			La ventaja de Fiber está en que trabaja con la menor cantidad de
-			memoria posible, por eso se recomienda que uses las funciones y
-			características del contexto (c) dentro del handler y que no mantengas
-			los valores en memoria (pero si quieres hacer eso, cópialos y recuerda que
-			tienes la función copy para slices).
-		*/
-		p := c.Params("foo")
-		b := make([]byte, len(p))
-		copy(b, p)
-		return c.SendString(string(b))
-	})
+	// app.Get("/custom/:foo", func(c *fiber.Ctx) error {
+	// 	/*
+	// 		La ventaja de Fiber está en que trabaja con la menor cantidad de
+	// 		memoria posible, por eso se recomienda que uses las funciones y
+	// 		características del contexto (c) dentro del handler y que no mantengas
+	// 		los valores en memoria (pero si quieres hacer eso, cópialos y recuerda que
+	// 		tienes la función copy para slices).
+	// 	*/
+	// 	p := c.Params("foo")
+	// 	b := make([]byte, len(p))
+	// 	copy(b, p)
+	// 	return c.SendString(string(b))
+	// })
+
+	// Setup routes
+	router.SetupRoutes(app)
 
 	app.Listen(":3000")
 	// log.Fatal(app.Listen(":3000"))
