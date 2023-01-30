@@ -8,6 +8,18 @@ import (
 	"github.com/joho/godotenv"
 )
 
+// @title Fiber Example API
+// @version 0.0
+// @description This is a sample swagger for Fiber
+// @contact.name API Support
+// @contact.email frank.ortegaca@htech.com
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+// @host localhost:3000
+// @securityDefinitions.apikey JWT
+// @in header
+// @name Authorization
+
 func main() {
 	// Load .env file
 	err := godotenv.Load(".env")

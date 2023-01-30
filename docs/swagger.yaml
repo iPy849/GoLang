@@ -1,0 +1,238 @@
+definitions:
+  person.Person:
+    properties:
+      CountryOfBirth:
+        type: string
+      DateOfBirth:
+        type: string
+      Email:
+        type: string
+      FirstName:
+        type: string
+      Gender:
+        type: string
+      Id:
+        type: integer
+      LastName:
+        type: string
+    type: object
+  utils.Response:
+    properties:
+      data: {}
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+host: localhost:3000
+info:
+  contact:
+    email: frank.ortegaca@htech.com
+    name: API Support
+  description: This is a sample swagger for Fiber
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Fiber Example API
+  version: "0.0"
+paths:
+  /auth/login:
+    post:
+      description: Get auth JWT token if correct data
+      parameters:
+      - description: First Name
+        in: formData
+        name: firstName
+        required: true
+        type: string
+      - description: Last Name
+        in: formData
+        name: lastName
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "500":
+          description: Internal Server Error
+      tags:
+      - Auth
+  /person:
+    get:
+      description: Get many users
+      parameters:
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      security:
+      - JWT: []
+      tags:
+      - Person
+    post:
+      description: Creates a person based in form-data information
+      parameters:
+      - description: First Name
+        in: formData
+        name: firstName
+        required: true
+        type: string
+      - description: Last Name
+        in: formData
+        name: lastName
+        required: true
+        type: string
+      - description: Email
+        in: formData
+        name: email
+        required: true
+        type: string
+      - description: Gender
+        in: formData
+        name: gender
+        required: true
+        type: string
+      - description: Date Of Birth
+        in: formData
+        name: dateOfBirth
+        required: true
+        type: string
+      - description: Country Of Birth
+        in: formData
+        name: countryOfBirth
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      security:
+      - JWT: []
+      tags:
+      - Person
+  /person/{id}:
+    delete:
+      description: Deletes a person based in it's id
+      parameters:
+      - description: Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      security:
+      - JWT: []
+      tags:
+      - Person
+    get:
+      description: Gets a user based in it's user id
+      parameters:
+      - description: Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/person.Person'
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      security:
+      - JWT: []
+      tags:
+      - Person
+    put:
+      description: Updates a person based in form-data information
+      parameters:
+      - description: Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: First Name
+        in: formData
+        name: firstName
+        type: string
+      - description: Last Name
+        in: formData
+        name: lastName
+        type: string
+      - description: Email
+        in: formData
+        name: email
+        type: string
+      - description: Gender
+        in: formData
+        name: gender
+        type: string
+      - description: Date Of Birth
+        in: formData
+        name: dateOfBirth
+        type: string
+      - description: Country Of Birth
+        in: formData
+        name: countryOfBirth
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/person.Person'
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      security:
+      - JWT: []
+      tags:
+      - Person
+securityDefinitions:
+  JWT:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

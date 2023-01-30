@@ -1,13 +1,22 @@
 package router
 
 import (
+	_ "fiber.example/docs"
 	"fiber.example/handlers"
 	"fiber.example/middlewares"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/gofiber/swagger"
 )
 
 func SetupRoutes(app *fiber.App) {
 	// Middlewares
+	app.Use(cors.New())
+	app.Use(recover.New())
+
+	// Documentation
+	app.Get("/docs/*", swagger.HandlerDefault)
 
 	// Auth
 	auth := app.Group("/auth")
