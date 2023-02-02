@@ -11,9 +11,18 @@ import (
 )
 
 func SetupRoutes(app *fiber.App) {
+	// Static Assets
+	assetsGroup := app.Group("/static")
+	assetsGroup.Static("/img", "./assets/img")
+
 	// Middlewares
 	app.Use(cors.New())
-	app.Use(recover.New())
+	app.Use(recover.New()) // Recuperación cuando crashea el programa
+
+	// Default index, testing purposes
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.SendString("Hola amigo")
+	})
 
 	// Documentation
 	app.Get("/docs/*", swagger.HandlerDefault)
