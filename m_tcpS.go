@@ -2,20 +2,42 @@ package main
 
 import (
 	"bufio"
-	"context"
 	"fmt"
 	"io"
 	"net"
-	"os"
-	"runtime"
+	"sync"
 )
 
 var (
 	firstConnection  bool = true
 	activeConnection int
+	waitGroup        sync.WaitGroup
 )
 
-func HandleConnections(conn *net.Conn, cancelCtx *context.CancelFunc) {
+// Atiende las conexiones entrantes y les asigna un handler
+func HandleIncomingConnections(listener *net.Listener) {
+	//NOTE: Cada conexión levanta una gorrutina distinta, será buena tenerlas bajo un contexto.
+	for {
+		fmt.Println(firstConnection)
+		fmt.Printf("%dC - Ready to receive connections\n", activeConnection)
+		// Compruebo que todos se conecten correctamente, o apago el servidor
+		conn, err := (*listener).Accept()
+		if err != nil { // NOTE: Cuando se cierre el listener puede dispararse el Accept con error por concurrencia
+			return
+		}
+
+		fmt.Printf("New connection from %s\n", conn.LocalAddr().String())
+		go HandleConnections(&conn)
+
+		if firstConnection {
+			firstConnection = false
+		}
+		activeConnection++
+	}
+}
+
+// Handler para cada conexión
+func HandleConnections(conn *net.Conn) {
 	defer (*conn).Close()
 	defer func() { activeConnection-- }()
 
@@ -25,7 +47,6 @@ func HandleConnections(conn *net.Conn, cancelCtx *context.CancelFunc) {
 		if err != nil {
 			if err != io.EOF {
 				fmt.Println("Error: " + err.Error())
-				(*cancelCtx)()
 			}
 			return
 		}
@@ -37,7 +58,6 @@ func HandleConnections(conn *net.Conn, cancelCtx *context.CancelFunc) {
 		if err != nil {
 			if err != io.EOF {
 				fmt.Println("Error: " + err.Error())
-				(*cancelCtx)()
 			}
 			return
 		}
@@ -49,44 +69,21 @@ func main() {
 	port := ":1234"
 	listener, err := net.Listen("tcp4", port)
 	if err != nil {
+		fmt.Println(1)
 		panic(err)
 	}
 	defer listener.Close()
+	waitGroup.Add(1)
 
-	//NOTE: Cada conexión levanta una gorrutina distinta, será buena tenerlas bajo un contexto.
-	incomingRequestCtx, cancel := context.WithCancel(context.Background())
+	go HandleIncomingConnections(&listener)
 
+	// NOTE: Comprueba las conexiones para saber cuando terminar de escuchar
 	go func() {
 		for firstConnection || activeConnection > 0 {
 		}
-		os.Exit(1)
+		waitGroup.Done()
 	}()
 
-	for {
-		fmt.Println(firstConnection)
-		fmt.Printf("%dC - Ready to receive connections\n", activeConnection)
-		// Compruebo que todos se conecten correctamente, o apago el servidor
-		conn, err := listener.Accept()
-		if err != nil {
-			fmt.Println("Error: " + err.Error())
-			cancel()
-		}
-
-		// Si la funciónn terminó toca avisar y hacer limpieza de recursos
-		select {
-		case <-incomingRequestCtx.Done():
-			fmt.Println("Server terminated succesfully!!!")
-			runtime.GC() //NOTE: Garbage collector
-			return
-		default:
-			if firstConnection {
-				firstConnection = false
-			}
-			activeConnection++
-		}
-
-		fmt.Printf("New connection from %s\n", conn.LocalAddr().String())
-		go HandleConnections(&conn, &cancel)
-	}
-
+	waitGroup.Wait()
+	fmt.Println("About to end...")
 }
