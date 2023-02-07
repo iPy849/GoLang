@@ -5,6 +5,8 @@ nc -lp <Port>
 ```
 este comando te va a permitir levantar un server tranquilamente donde la información se puede enviar se forma interactiva.
 
+También hay una herramienta que sirve como cliente para websockets y que puede ser usado para testing. Esa herramienta se llama **websocat** y es necesario instalarla.
+
 # Orden de lectura
 1. [tcpC.go](tcpC.go)
 2. [tcpS.go](tcpS.go)
