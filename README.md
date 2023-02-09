@@ -1,8 +1,2 @@
-# Orden de lectura
-1. 
-
-# Mis propios scripts
-- 
-
-# Tareas del capítulo (la verdad no entendí esta vez)
-- 
+#Concepto:
+El concepto de esta app es usar Websockets para hacer un chat en tiempo real que puede albergar a varios usuarios de manera simultánea
